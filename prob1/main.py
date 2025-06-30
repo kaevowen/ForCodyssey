@@ -11,7 +11,7 @@ try:
     # mission_computer_main.log 파일을 열고 그 객체를 log_file 변수에 할당한다
     # with open 구문은 기본적으론 a = open(), a.close()와 같음
     # with open 구문을 이용하면 변수선언, 변수할당, 파일 닫기까지 해줌
-    with open('mission_computer_main.log') as log_file:
+    with open('prob1/mission_computer_main.log') as log_file:
 
         # for문으로 log_file(mission_computer_main.log) 에 있는 글을 한 줄씩 불러옴
         for log_line in log_file:
@@ -22,7 +22,7 @@ try:
     print("----------------- 거꾸로 출력하기 -----------------\n")
 
     #위 with open 구문과 같음.
-    with open('mission_computer_main.log') as log_file:
+    with open('prob1/mission_computer_main.log') as log_file:
         # 거꾸로 출력하기 위해 log_file.readlines()를 이용해 log_file을 전체적으로 읽어줌
         # log_file.read() -> 한 줄만 읽기 // log_file.readlines() -> 전체적으로 읽기(그 파일의 끝까지)
         # readlines()로 로그파일을 읽어올 경우 개행(엔터키)을 기준으로 한 줄씩 List 형태로 저장됨.
