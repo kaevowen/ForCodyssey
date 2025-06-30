@@ -38,5 +38,5 @@ print('------------------- 구분선 -------------------')
 for log in reversed(log_lists):
     print(log)
 
-with open('mission_computer_main.json', 'w+', encoding='utf-8') as f:
+with open('prob2/mission_computer_main.json', 'w+', encoding='utf-8') as f:
     f.write(json.dumps(log_json))
