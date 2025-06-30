@@ -11,8 +11,13 @@ try:
     # mission_computer_main.log 파일을 열고 그 객체를 log_file 변수에 할당한다
     # with open 구문은 기본적으론 a = open(), a.close()와 같음
     # with open 구문을 이용하면 변수선언, 변수할당, 파일 닫기까지 해줌
+    """
+    a = open()
+    for a in a: 
+    asdasda
+    a.close()
+    """
     with open('prob1/mission_computer_main.log') as log_file:
-
         # for문으로 log_file(mission_computer_main.log) 에 있는 글을 한 줄씩 불러옴
         for log_line in log_file:
             print(log_line)        
