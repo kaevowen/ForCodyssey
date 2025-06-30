@@ -1,7 +1,16 @@
+# 지구였으면 Hello World인데 화성이라 Hello Mars
+print('Hello Mars')
+
+# try - except 구문
+# try 안의 코드를 실행하다가 어떤 오류가 발생한다면 except 구문으로 넘어가 거기에 있는 코드를 실행한다.
+# 이 코드의 경우엔 
+# 파일을 찾지 못했을때(FileNotFoundError)
+# 파일을 열었는데 인코딩이 utf-8가 아니라 제대로 읽을 수 없을때 (UnicodeDecodeError)
+# 그 외 알 수 없는 오류가 발생한다면(Exception) 그 오류의 내용을 변수 e에 할당하고 출력한다.
 try:
     # mission_computer_main.log 파일을 열고 그 객체를 log_file 변수에 할당한다
     # with open 구문은 기본적으론 a = open(), a.close()와 같음
-    # with open 구문을 이용하면 변수선언, 할당, 파일 닫기까지 해줌
+    # with open 구문을 이용하면 변수선언, 변수할당, 파일 닫기까지 해줌
     with open('mission_computer_main.log') as log_file:
 
         # for문으로 log_file(mission_computer_main.log) 에 있는 글을 한 줄씩 불러옴
