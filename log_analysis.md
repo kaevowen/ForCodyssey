@@ -12,8 +12,8 @@
 |------------------|----------------------------------------------------|
 | 11:28:00         | Touchdown confirmed. Rocket safely landed.         |
 | 11:30:00         | Mission completed successfully.                    |
-| 11:35:00         | **Oxygen tank unstable.** ← 이상 징후 시작        |
-| 11:40:00         | **Oxygen tank explosion.** ← 폭발 발생            |
+| 11:35:00         | **Oxygen tank unstable.** ← 이상 징후 시작          |
+| 11:40:00         | **Oxygen tank explosion.** ← 폭발 발생              |
 | 12:00:00         | Center and mission control systems powered down.   |
 
 ---

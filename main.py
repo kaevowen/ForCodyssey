@@ -8,8 +8,9 @@ try:
         for log_line in log_file:
             print(log_line)        
 
-        # 구분용 출력선
-        print("----------------- 거꾸로 출력하기 -----------------\n")
+
+    # 구분용 출력선
+    print("----------------- 거꾸로 출력하기 -----------------\n")
 
     #위 with open 구문과 같음.
     with open('mission_computer_main.log') as log_file:
