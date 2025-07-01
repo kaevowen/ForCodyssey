@@ -2,7 +2,7 @@
 
 ### 1. 텍스트 파일
 
-![텍스트 파일 예시](prob3/OrdinaryTextFileImage.jpg)
+![텍스트 파일 예시](OrdinaryTextFileImage.jpg)
 
 - 사람이 읽을 수 있는 형식 (문자, 숫자 등)
 - 예: `.txt`, `.csv`, `.json`
@@ -11,7 +11,7 @@
 
 ### 2. 이진 파일
 
-![이진 파일 예시](prob3/binaryFileImage.jpg)
+![이진 파일 예시](binaryFileImage.jpg)
 
 - 사람이 직접 읽기 어려움 (문자 대신 기호, 깨진 문자)
 - 예: `.bin`, `.jpg`, `.exe`, `.pkl`
