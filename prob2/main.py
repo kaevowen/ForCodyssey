@@ -38,5 +38,8 @@ print('------------------- 구분선 -------------------')
 for log in reversed(log_lists):
     print(log)
 
-with open('prob2/mission_computer_main.json', 'w+', encoding='utf-8') as f:
-    f.write(json.dumps(log_json))
+with open('prob2/mission_computer_main.json', 'w', encoding='utf-8') as f:
+
+    # indent : 들여쓰기를 이용해 보기 좋게 저장하는 기능
+    # ensure_ascii : 한글이나 유니코드가 깨지지 않은 상태로 저장됨
+    f.write(json.dumps(log_json, indent=4, ensure_ascii=False))
