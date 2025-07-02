@@ -1,12 +1,3 @@
-
-"""
-계산해야 할 것
-반구 면적 = 2πr² (r = diameter / 2)
-면적 단위: m² → cm² (곱하기 10,000)
-무게 = 면적(cm²) × 두께(cm) × 밀도 (g/cm³)
-무게 단위 변환: g → kg (나누기 1,000)
-화성 중력 보정: 지구 중량의 ×0.38
-"""
 # 계산 / 저장을 위한 전역변수들
 pi = 3.141592
 material_result = 0
@@ -16,14 +7,21 @@ area_result = 0
 weight_result = 0
 
 def shape_area(material, diameter, thickness=1):
+    """
+    계산해야 할 것
+    반구 면적 = 2πr² (r = diameter / 2)
+    면적 단위: m² → cm² (곱하기 10,000)
+    무게 = 면적(cm²) × 두께(cm) × 밀도 (g/cm³)
+    무게 단위 변환: g → kg (나누기 1,000)
+    화성 중력 보정: 지구 중량의 ×0.38
+    """
+
+    # 재료의 이름과 값을 저장하기 위한 dict 형식
     materials = {
         '유리': 2.4,
         '알루미늄':2.7,
         '탄소강': 7.85
     }
-
-    if material == '':
-        material = '유리'
 
     r = diameter / 2
     area_cm2 = (2 * pi * (r ** 2)) * 10000
@@ -45,6 +43,7 @@ def shape_area(material, diameter, thickness=1):
           f'무게 ==> {weight_result}kg')
 
 
+# 입력받은 값이 실수(float)인지 판별하는 함수
 def is_float(value):
     try:
         float(value)
@@ -83,7 +82,7 @@ def get_valid_material():
         
         else :
             print('사용할 수 없는 재료입니다. 유리, 알루미늄, 탄소강 중 선택해주세요.')
-            get_valid_material()
+            continue
 
 # 사용 가능한 재료 유리 / 알루미늄 / 탄소강
 # 화성의 무게는 지구 대비 38% 수준. weight 계산시에 0.38을 곱할것
@@ -94,8 +93,10 @@ def get_valid_material():
 # 계산이 필요 없을땐 종료할 수 있어야함.
 # 출력형식 재질 ==> 유리, 지름 ==> 000, 두께 ==> 000, 면적 ==> 000, 무게 ==> 000kg
 
-
+# 계산이 다 끝난 후 다시할껀지 판별하기 위한 변수. 처음에 한 번은 무조건 실행해야하니 True로 설정
 condition = True
+
+# condition이 False가 될때까지 반복한다.
 while condition:
     diameter = get_valid_diameter()
     material = get_valid_material()
@@ -105,6 +106,8 @@ while condition:
         q = input('계산이 완료되었습니다. 다른 값으로 계속 계산할까요? (Y/N)')
         if not q.upper() in ['Y', 'N']:
             continue
+
+        # 사용자가 N을 입력했다면 condition 변수에 False를 할당한다.
         elif q.upper() == 'N':
           print('프로그램을 종료합니다.')  
           condition = False
