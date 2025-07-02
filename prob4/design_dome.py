@@ -45,6 +45,46 @@ def shape_area(material, diameter, thickness=1):
           f'무게 ==> {weight_result}kg')
 
 
+def is_float(value):
+    try:
+        float(value)
+        return True
+    except:
+        return False
+
+
+def get_valid_diameter():
+    while True:
+        diameter_input = input('돔의 지름을 입력하세요(단위: m) : ').strip()
+        if not is_float(diameter_input):
+            print('숫자가 아닌 값이 입력되었습니다.')
+            continue
+
+        # 문자열이 아니면 실수형으로 변환
+        diameter_input = float(diameter_input)
+        if diameter_input <= 0:
+            print('지름은 0이거나 음수일 수 없습니다.')
+            continue
+
+        return diameter_input
+    
+
+def get_valid_material():
+    while True:
+        material_input = input('재질을 입력하세요(유리, 알루미늄, 탄소강). '
+                               '아무것도 입력하지 않으면 기본값인 유리가 선택됩니다. : ').strip()
+        
+        if material_input == '':
+            print('아무것도 입력하지 않아 기본값인 유리가 선택되었습니다.')
+            return '유리'
+        
+        elif material_input in ['유리', '알루미늄', '탄소강']:
+            return material_input
+        
+        else :
+            print('사용할 수 없는 재료입니다. 유리, 알루미늄, 탄소강 중 선택해주세요.')
+            get_valid_material()
+
 # 사용 가능한 재료 유리 / 알루미늄 / 탄소강
 # 화성의 무게는 지구 대비 38% 수준. weight 계산시에 0.38을 곱할것
 # 결과는 소수점이하 세자리까지
@@ -55,24 +95,17 @@ def shape_area(material, diameter, thickness=1):
 # 출력형식 재질 ==> 유리, 지름 ==> 000, 두께 ==> 000, 면적 ==> 000, 무게 ==> 000kg
 
 
-while True:
+condition = True
+while condition:
+    diameter = get_valid_diameter()
+    material = get_valid_material()
+    shape_area(material, diameter)
 
     while True:
-        diameter_input = float(input('돔의 지름을 입력하세요(단위: m)'))
-        if diameter_input <= 0:
-            print('지름은 0이거나 음수일 수 없습니다.')
+        q = input('계산이 완료되었습니다. 다른 값으로 계속 계산할까요? (Y/N)')
+        if not q.upper() in ['Y', 'N']:
             continue
-        
-        break
-
-    while True:
-        material_input = input('재질을 입력하세요(유리, 알루미늄, 탄소강). 기본값은 유리 입니다.')
-        if not ['유리', '알루미늄', '탄소강'] in material_input:
-            print('사용할 수 없는 재료입니다. 유리, 알루미늄, 탄소강 중 선택해주세요.')
-
-        break
-
-    shape_area(material_input, diameter_input)
-    q = input('계산이 완료되었습니다. 다른 값으로 계속 계산할까요? (Y/N)')
-    if q == 'N':
-        break
+        elif q.upper() == 'N':
+          print('프로그램을 종료합니다.')  
+          condition = False
+          break
