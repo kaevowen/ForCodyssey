@@ -13,7 +13,7 @@ import traceback
 라이브러리 설명
 csv - csv 파일을 편하게 처리하기 위한 라이브러리
 pickle - 파이썬에서 사용하는 자료형을 변환 없이 그대로 파일로 저장하거나 불러올때 쓰는 라이브러리
-operator.itemgetter - 리스트의 특정 요소를 기준으 정렬하기 위해 씀.
+operator.itemgetter - 리스트의 특정 요소를 기준으로 정렬하기 위해 씀.
 """
 # Mars_Base_Inventory_danger.csv파일 내용의 컬럼 헤더 설정
 column_header = ['Substance', 'Weight (g/cm³)', 'Specific Gravity', 'Strength', 'Flammability']
@@ -32,7 +32,9 @@ try:
         # 어떤 리스트의 맨 뒤에 있는 요소는 -1을 쓰면 편하다.
         # sort 함수의 reverse 인수를 True로 설정하면 내림차순 정렬된다
         csv_list.sort(key=itemgetter(-1), reverse=True)
-
+        # [1, 2, 3]
+        #  0  1  2
+        # -1 -2
     with open('prob3/Mars_Base_Inventory_danger.csv', 'w') as csv_file:
         writer = csv.writer(csv_file)
 
