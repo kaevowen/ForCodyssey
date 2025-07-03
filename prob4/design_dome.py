@@ -6,6 +6,8 @@ thickness_result = 0
 area_result = 0
 weight_result = 0
 
+# 돔의 면적을 구하는 함수. 인수로 재료, 지름, 두께를 받는다. 
+# 두께는 기본값이 1로 설정되어있다.
 def shape_area(material, diameter, thickness=1):
     """
     계산해야 할 것
@@ -43,7 +45,6 @@ def shape_area(material, diameter, thickness=1):
           f'무게 ==> {weight_result}kg')
 
 
-# 입력받은 값이 실수(float)인지 판별하는 함수
 def is_float(value):
     try:
         float(value)
@@ -93,10 +94,16 @@ def get_valid_material():
 # 계산이 필요 없을땐 종료할 수 있어야함.
 # 출력형식 재질 ==> 유리, 지름 ==> 000, 두께 ==> 000, 면적 ==> 000, 무게 ==> 000kg
 
-# 계산이 다 끝난 후 다시할껀지 판별하기 위한 변수. 처음에 한 번은 무조건 실행해야하니 True로 설정
+# 계산이 다 끝난 후 다시 계산 할 것인지 판별하기 위한 변수. 처음에 한 번은 무조건 실행해야하니 True로 설정
 condition = True
 
 # condition이 False가 될때까지 반복한다.
+
+#                       ----- 프로그램의 전체적인 흐름 -----
+# 입력받은 지름과 재료가 유효한 값인지 판별하고(get_valid_diameter, get_valid_material)
+# 유효하지 않은 값이라면 유효한 값을 받을때까지 반복
+# 유효한 값이라면 shape_area에 해당 값을 전달해 계산 수행(shpae_area(material, diameter))
+# 계산완료 후 다시 계산을 수행할것인지 물어봄. Y/N 둘중에 하나를 입력값으로 받고 나머지는 무시됨.
 while condition:
     diameter = get_valid_diameter()
     material = get_valid_material()
