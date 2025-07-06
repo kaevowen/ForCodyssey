@@ -1,0 +1,49 @@
+part, s1, s2, s3
+Glass,32,35,82
+Rebar,35,67,46
+Stone,37,12,6
+Cement,3,91,15
+Wallpaper,9,70,5
+Ceiling material,25,1,25
+Drywall,96,18,18
+Non-ferrous metal,31,85,23
+Steel frame,10,53,29
+Soil,77,29,30
+Steel frame structure,28,54,47
+Asphalt shingles,63,7,42
+Concrete blocks,26,64,24
+Fasteners,12,43,77
+Metal mesh,34,73,22
+Brick mortar,34,28,37
+Door frame,99,2,3
+Concrete mixer,34,70,9
+Ladder,57,8,79
+Jackhammer,21,3,36
+Ceiling grid,47,82,16
+Brickwork,50,6,50
+Blinds,12,94,25
+Joint compound,5,30,23
+Wire mesh,61,49,35
+Radiator,24,53,34
+Drywall screws,60,11,35
+Hydraulic push,62,34,27
+Wire cable,60,40,2
+Block wall,88,14,2
+Reinforced concrete block,22,2,14
+Outlet box,41,4,7
+Wooden ladder,35,33,76
+Gypsum base,8,14,28
+Building paper,18,24,59
+Countertop,9,20,21
+Projection base,23,19,91
+Exterior brick,12,6,31
+Door frame,86,17,17
+Building trim,3,35,39
+Ceramic tile,8,59,64
+Projection window,98,21,21
+Hasp,27,27,12
+Door stop,91,17,18
+Brick wall,83,1,49
+Air filter,29,57,45
+Tile joint material,44,29,11
+Stair runner,49,59,2
