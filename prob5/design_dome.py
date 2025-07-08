@@ -30,7 +30,7 @@ mars_base_main_parts = [
                   encoding='utf-8', skip_header=1)
 ]
 
-# 이름, 값1, 값2, 값3 이런 형태로 합칠거임. 행렬의 크기가 같으므로 column_stack 함수로 쉽게 병합이 가능함
+# [이름, 값1, 값2, 값3] 이런 형태로 합칠거임. 행렬의 크기가 같으므로 column_stack 함수로 쉽게 병합이 가능함
 parts = np.column_stack([
     mars_base_main_parts[0]['parts'],
     mars_base_main_parts[0]['strength'],
