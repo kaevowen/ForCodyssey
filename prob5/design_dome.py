@@ -1,4 +1,4 @@
-# numpy 라이브러리를 np라는 별명으로 불러들임. 이러면 numpy.함수 가 아닌 np.함수로도 사용이 가능해진다.
+# numpy 라이브러리를 np라는 별명으로 불러들임. 이러면 numpy.함수 가 아닌 np.함수 로도 사용이 가능해진다.
 import numpy as np
 
 # genfromtxt 함수에 들어간 인수에 대한 설명

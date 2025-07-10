@@ -8,7 +8,7 @@ weight_result = 0
 
 # 돔의 면적을 구하는 함수. 인수로 재료, 지름, 두께를 받는다. 
 # 두께는 기본값이 1로 설정되어있다.
-def shape_area(material, diameter, thickness=1):
+def sphere_area(material, diameter=10, thickness=1):
     # 전역변수로 지정해 값이 저장 될 수 있도록 한다.
     # global 키워드로 지정하지 않으면 값이 외부로 전달되지 않는다.
     global material_result, diameter_result, thickness_result, area_result, weight_result
@@ -111,7 +111,7 @@ condition = True
 while condition:
     diameter = get_valid_diameter()
     material = get_valid_material()
-    shape_area(material, diameter)
+    sphere_area(material)
     print(area_result, weight_result)
     while True:
         q = input('계산이 완료되었습니다. 다른 값으로 계속 계산할까요? (Y/N)')
