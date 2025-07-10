@@ -57,12 +57,12 @@ class MissionComputer:
 
     def get_sensor_data(self):
         self.set_env()
-        self.avg_env_values['mars_base_internal_avg_temperature'] =self.env_values['mars_base_internal_temperature']
-        self.avg_env_values['mars_base_external_avg_temperature'] =self.env_values['mars_base_external_temperature']
-        self.avg_env_values['mars_base_internal_avg_humidity'] =self.env_values['mars_base_internal_humidity']
-        self.avg_env_values['mars_base_external_avg_illuminance'] =self.env_values['mars_base_external_illuminance']
-        self.avg_env_values['mars_base_internal_avg_co2'] =self.env_values['mars_base_internal_co2']
-        self.avg_env_values['mars_base_internal_avg_oxygen'] =self.env_values['mars_base_internal_oxygen']
+        self.avg_env_values['mars_base_internal_avg_temperature'] = self.env_values['mars_base_internal_temperature']
+        self.avg_env_values['mars_base_external_avg_temperature'] = self.env_values['mars_base_external_temperature']
+        self.avg_env_values['mars_base_internal_avg_humidity'] = self.env_values['mars_base_internal_humidity']
+        self.avg_env_values['mars_base_external_avg_illuminance'] = self.env_values['mars_base_external_illuminance']
+        self.avg_env_values['mars_base_internal_avg_co2'] = self.env_values['mars_base_internal_co2']
+        self.avg_env_values['mars_base_internal_avg_oxygen'] = self.env_values['mars_base_internal_oxygen']
         return json.dumps(self.get_env(), indent=4)
 
 

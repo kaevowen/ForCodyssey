@@ -8,23 +8,27 @@ weight_result = 0
 
 # 돔의 면적을 구하는 함수. 인수로 재료, 지름, 두께를 받는다. 
 # 두께는 기본값이 1로 설정되어있다.
-def shape_area(material, diameter, thickness=1):
+def shape_area(material, diameter=10, thickness=1):
+    # 전역변수로 지정해 값이 저장 될 수 있도록 한다.
+    # global 키워드로 지정하지 않으면 값이 외부로 전달되지 않는다.
+    global material_result, diameter_result, thickness_result, area_result, weight_result
     """
     계산해야 할 것
     반구 면적 = 2πr² (r = diameter / 2)
     면적 단위: m² → cm² (곱하기 10,000)
     무게 = 면적(cm²) × 두께(cm) × 밀도 (g/cm³)
     무게 단위 변환: g → kg (나누기 1,000)
-    화성 중력 보정: 지구 중량의 ×0.38
+    화성 중력 보정: 지구 중량의 × 0.38
     """
 
-    # 재료의 이름과 값을 저장하기 위한 dict 형식
+    # 재료의 이름과 값을 저장하기 위한 dictionary 형식
     materials = {
         '유리': 2.4,
         '알루미늄':2.7,
         '탄소강': 7.85
     }
 
+    # 재질, 지름, 두께, 면적, 무게를 구하는 구간
     r = diameter / 2
     area_cm2 = (2 * pi * (r ** 2)) * 10000
     density = materials[material]
@@ -108,7 +112,7 @@ while condition:
     diameter = get_valid_diameter()
     material = get_valid_material()
     shape_area(material, diameter)
-
+    print(area_result, weight_result)
     while True:
         q = input('계산이 완료되었습니다. 다른 값으로 계속 계산할까요? (Y/N)')
         if not q.upper() in ['Y', 'N']:
