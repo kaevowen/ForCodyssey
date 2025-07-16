@@ -19,13 +19,13 @@ import numpy as np
 
 data_type = [('parts', 'U30'), ('strength', 'i4')]
 mars_base_main_parts = [
-    np.genfromtxt('prob5/mars_base_main_parts-001.csv', 
+    np.genfromtxt('chapter_1/prob5/mars_base_main_parts-001.csv', 
                   delimiter=',', dtype=data_type, 
                   encoding='utf-8', skip_header=1),
-    np.genfromtxt('prob5/mars_base_main_parts-002.csv', 
+    np.genfromtxt('chapter_1/prob5/mars_base_main_parts-002.csv', 
                   delimiter=',', dtype=data_type, 
                   encoding='utf-8', skip_header=1),
-    np.genfromtxt('prob5/mars_base_main_parts-003.csv', 
+    np.genfromtxt('chapter_1/prob5/mars_base_main_parts-003.csv', 
                   delimiter=',', dtype=data_type, 
                   encoding='utf-8', skip_header=1)
 ]
@@ -54,7 +54,7 @@ parts_to_work_on = parts[is_weak]
 # 이런 형태로 저장됨
 column_header = 'part, s1, s2, s3'
 np.savetxt(
-    'prob5/parts_to_work_on.csv', 
+    'chapter_1/prob5/parts_to_work_on.csv', 
     parts_to_work_on, 
     delimiter=',', 
     fmt='%s', 

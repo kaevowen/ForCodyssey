@@ -5,7 +5,7 @@ logging.basicConfig(
     level=logging.INFO,
     format='---- %(asctime)s ----%(message)s',
     handlers=[
-        logging.FileHandler('prob6/mars.log', encoding='utf-8'),
+        logging.FileHandler('chapter_1/prob6/mars.log', encoding='utf-8'),
         logging.StreamHandler()
     ]
 )

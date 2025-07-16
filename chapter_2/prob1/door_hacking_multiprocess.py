@@ -3,21 +3,20 @@ import itertools
 import string
 import time
 import multiprocessing
-
+import datetime
 
 def brute_worker(prefixes, path, target, charset, length, found_flag, result_queue):
     try:
         with zipfile.ZipFile(path) as zf:
             attempt = 0
             start_time = time.perf_counter()
-
+            now = datetime.datetime.now()
             for prefix in prefixes:
                 for suffix in itertools.product(charset, repeat=length - len(prefix)):
                     if found_flag.is_set():
                         return  # 다른 프로세스가 성공함
                     attempt += 1
                     password = (prefix + ''.join(suffix)).encode()
-
                     try:
                         with zf.open(target, pwd=password) as f:
                             data = f.read()
@@ -31,13 +30,13 @@ def brute_worker(prefixes, path, target, charset, length, found_flag, result_que
                     except:
                         if attempt % 100000 == 0:
                             elapsed = time.perf_counter() - start_time
-                            print(f"시도: {attempt} | 속도: {attempt / elapsed:.2f}개/s", end='\r')
+                            print(f"시작시간 : {now} | 시도 : {attempt} | 속도 : {attempt / elapsed:.2f}개/s", end='\r')
                         continue
     except Exception as e:
         print(f"\n[!] 오류 발생: {e}")
 
 
-def unlock_zip_multiproc(path, target, charset, length):
+def unlock_zip(path, target, charset, length):
     # 문자 집합을 3등분
     charset_list = list(charset)
     chunk_size = len(charset_list) // 3
@@ -69,7 +68,7 @@ def unlock_zip_multiproc(path, target, charset, length):
     # 결과 저장
     if not result_queue.empty():
         try:
-            with open('prob2/password.txt', 'wb') as f:
+            with open('chapter_2/prob2/password.txt', 'wb') as f:
                 f.write(result_queue.get())
             print("[+] 압축 해제된 파일을 'password.txt'로 저장했습니다.")
         except Exception as e:
@@ -87,4 +86,4 @@ if __name__ == '__main__':
     charset = string.ascii_lowercase + string.digits
     length = 6
 
-    unlock_zip_multiproc(zip_path, target_file, charset, length)
+    unlock_zip(zip_path, target_file, charset, length)
