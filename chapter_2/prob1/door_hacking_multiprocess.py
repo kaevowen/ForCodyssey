@@ -40,13 +40,15 @@ def brute_worker(prefixes, path, target, charset, length, found_flag, result_que
 def unlock_zip_multiproc(path, target, charset, length):
     # 문자 집합을 3등분
     charset_list = list(charset)
-    chunk_size = len(charset_list) 
+    chunk_size = len(charset_list) // 3
     chunks = [
         charset_list[:chunk_size],
         charset_list[chunk_size:2 * chunk_size],
         charset_list[2 * chunk_size:]
     ]
-
+    print(chunks[0])
+    print(chunks[1])
+    print(chunks[2])
     # 프로세스 통신 도구
     found_flag = multiprocessing.Event()
     result_queue = multiprocessing.Queue()
@@ -67,7 +69,7 @@ def unlock_zip_multiproc(path, target, charset, length):
     # 결과 저장
     if not result_queue.empty():
         try:
-            with open('password.txt', 'wb') as f:
+            with open('prob2/password.txt', 'wb') as f:
                 f.write(result_queue.get())
             print("[+] 압축 해제된 파일을 'password.txt'로 저장했습니다.")
         except Exception as e:
