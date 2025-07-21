@@ -32,12 +32,12 @@ class DummySensor:
 
     def get_env(self):
         logging.info(
-            f'\n화성 기지 내부 온도 : {self.env_values['mars_base_internal_temperature']}°C\n'
-            f'화성 기지 외부 온도 : {self.env_values['mars_base_external_temperature']}°C\n'
-            f'화성 기지 내부 습도 : {self.env_values['mars_base_internal_humidity']}%\n'
-            f'화성 기지 외부 광량 : {self.env_values['mars_base_external_illuminance']}W/m2\n'
-            f'화성 기지 내부 이산화탄소 농도 : {self.env_values['mars_base_internal_co2']}%\n'
-            f'화성 기지 내부 산소 농도 : {self.env_values['mars_base_internal_oxygen']}%\n'
+            f'\n화성 기지 내부 온도 : {self.env_values["mars_base_internal_temperature"]}°C\n'
+            f'화성 기지 외부 온도 : {self.env_values["mars_base_external_temperature"]}°C\n'
+            f'화성 기지 내부 습도 : {self.env_values["mars_base_internal_humidity"]}%\n'
+            f'화성 기지 외부 광량 : {self.env_values["mars_base_external_illuminance"]}W/m2\n'
+            f'화성 기지 내부 이산화탄소 농도 : {self.env_values["mars_base_internal_co2"]}%\n'
+            f'화성 기지 내부 산소 농도 : {self.env_values["mars_base_internal_oxygen"]}%\n'
         )
         return self.env_values
     

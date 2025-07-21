@@ -1,16 +1,14 @@
-import random
-import logging
-from time import sleep
-import json
-import threading
 import os
 import sys
-import platform
-import os
 import json
+import random
+import logging
+import platform
+import threading
 
-from concurrent.futures import ProcessPoolExecutor
+from time import sleep
 from multiprocessing import Process, Value
+from concurrent.futures import ProcessPoolExecutor
 
 if os.name == 'nt':
     import msvcrt
