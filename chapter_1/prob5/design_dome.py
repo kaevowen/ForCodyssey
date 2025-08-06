@@ -37,7 +37,7 @@ parts = np.column_stack([
     mars_base_main_parts[1]['strength'],
     mars_base_main_parts[2]['strength']
     ])
-
+print(parts)
 # parts의 첫번째값부터 끝까지(숫자가 담겨있는 부분임) 실수형으로 변환
 # 그 후에 산술 평균값을 계산함
 parts_strength = parts[:, 1:].astype(float)

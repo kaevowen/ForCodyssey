@@ -2,7 +2,7 @@ import sys
 from PyQt5 import uic
 from PyQt5.QtWidgets import QApplication, QMainWindow
 
-form_class = uic.loadUiType("main.ui")[0]
+form_class = uic.loadUiType("calculator.ui")[0]
 
 
 class main_window(QMainWindow, form_class):
