@@ -5,10 +5,25 @@ import random
 import logging
 import platform
 import threading
+import subprocess
+
 
 from time import sleep
 from multiprocessing import Process, Value
-from concurrent.futures import ProcessPoolExecutor
+
+try:
+    import psutil
+
+except ImportError:
+    print('의존성 오류. psutil가 설치되어 있지 않습니다. psutil을 설치합니다.')
+    try:
+        subprocess.check_call([sys.executable, '-m', 'pip', 'install', 'psutil'])
+        import psutil
+
+    except subprocess.CalledProcessError as e:
+        print('의존성 설치 중 오류가 발생했습니다. : {e}')
+        sys.exit(1)
+    
 
 if os.name == 'nt':
     import msvcrt
@@ -20,7 +35,7 @@ logging.basicConfig(
     level=logging.INFO,
     format='---- %(asctime)s ----%(message)s',
     handlers=[
-        logging.FileHandler('prob6/mars.log', encoding='utf-8'),
+        logging.FileHandler('chapter_1/prob8/mars.log', encoding='utf-8'),
         logging.StreamHandler()
     ]
 )
@@ -72,7 +87,7 @@ class MissionComputer:
         return json.dumps(self.get_avg_env(), indent=4)
 
     def get_mission_computer_info(self, flag):
-        print("computer info")
+        print("load computer info")
         try:
             import psutil
 
@@ -82,6 +97,7 @@ class MissionComputer:
                 type_of_cpu = platform.architecture()
                 number_of_cpu_cores = psutil.cpu_count()
                 total_memory_size = psutil.virtual_memory().total
+                print('process 0 : ')
                 print(f'operating system : {operating_system}\n'
                     f'system version : {operating_system_version}\n'
                     f'cpu types : {type_of_cpu}\n'
@@ -106,11 +122,10 @@ class MissionComputer:
             print('파일 시스템/드라이버 오류')
         except AttributeError:
             print('지금 설치된 psutil 라이브러리에 해당 함수가 없습니다. 버전을 확인해주세요.')
-        except ImportError:
-            print('psutil 라이브러리가 설치되어 있지 않습니다. pip install psutil을 통해 설치해주세요.')
+
 
     def get_mission_computer_load(self, flag):
-        print("computer load")
+        print("load computer load data")
         try:
             import psutil
 
@@ -120,6 +135,7 @@ class MissionComputer:
                     'memory_usage': psutil.virtual_memory().percent
                 }
 
+                print('process 1 : ')
                 print(json.dumps(current_computer_usage))
 
                 # 0.05초씩 400번 총 20초 쉬는 함수. 키 입력을 받았을때 즉각적으로 프로그램을 종료하기 위해 단위를 좀 줄였음.
@@ -140,8 +156,7 @@ class MissionComputer:
             print('파일 시스템/드라이버 오류')
         except AttributeError:
             print('지금 설치된 psutil 라이브러리에 해당 함수가 없습니다. 버전을 확인해주세요.')
-        except ImportError:
-            print('psutil 라이브러리가 설치되어 있지 않습니다. pip install psutil을 통해 설치해주세요.')
+
       
     def init_avg_env(self):
         # 평균수치의 모든 값을 초기화
@@ -152,7 +167,7 @@ class MissionComputer:
         self.avg_count = 0
 
     def get_sensor_data(self, flag):
-        print("sensor data")
+        print("load sensor data")
         while True:
             self.set_env()
             self.avg_env_values['mars_base_internal_avg_temperature'] += self.env_values['mars_base_internal_temperature']
@@ -163,6 +178,7 @@ class MissionComputer:
             self.avg_env_values['mars_base_internal_avg_oxygen'] += self.env_values['mars_base_internal_oxygen']
             
             self.avg_count += 1
+            print('process 2 : ')
             print(json.dumps(self.get_env()))
             # 0.05초씩 400번 총 20초 쉬는 함수. 키 입력을 받았을때 즉각적으로 프로그램을 종료하기 위해 단위를 좀 줄였음.
             for _ in range(400):

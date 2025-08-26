@@ -1,15 +1,27 @@
 import random
 import logging
-from time import sleep
 import json
 import threading
 import os
 import sys
 import platform
-import os
-import json
-from concurrent.futures import ThreadPoolExecutor
-from concurrent.futures import ProcessPoolExecutor
+import subprocess
+
+
+from time import sleep
+
+try:
+    import psutil
+
+except ImportError:
+    print('의존성 오류. psutil가 설치되어 있지 않습니다. psutil을 설치합니다.')
+    try:
+        subprocess.check_call([sys.executable, '-m', 'pip', 'install', 'psutil'])
+        import psutil
+
+    except subprocess.CalledProcessError as e:
+        print('의존성 설치 중 오류가 발생했습니다. : {e}')
+        sys.exit(1)
 
 if os.name == 'nt':
     import msvcrt
@@ -21,7 +33,7 @@ logging.basicConfig(
     level=logging.INFO,
     format='---- %(asctime)s ----%(message)s',
     handlers=[
-        logging.FileHandler('prob6/mars.log', encoding='utf-8'),
+        logging.FileHandler('chapter_1/prob9/mars.log', encoding='utf-8'),
         logging.StreamHandler()
     ]
 )
@@ -105,8 +117,6 @@ class MissionComputer:
             print('파일 시스템/드라이버 오류')
         except AttributeError:
             print('지금 설치된 psutil 라이브러리에 해당 함수가 없습니다. 버전을 확인해주세요.')
-        except ImportError:
-            print('psutil 라이브러리가 설치되어 있지 않습니다. pip install psutil을 통해 설치해주세요.')
 
     def get_mission_computer_load(self):
         try:
@@ -138,9 +148,7 @@ class MissionComputer:
             print('파일 시스템/드라이버 오류')
         except AttributeError:
             print('지금 설치된 psutil 라이브러리에 해당 함수가 없습니다. 버전을 확인해주세요.')
-        except ImportError:
-            print('psutil 라이브러리가 설치되어 있지 않습니다. pip install psutil을 통해 설치해주세요.')
-      
+
     def init_avg_env(self):
         # 평균수치의 모든 값을 초기화
         for key in self.avg_env_values.keys():

@@ -6,6 +6,8 @@ import threading
 import os
 import sys
 
+import prob6.mars_mission_computer
+
 
 if os.name == 'nt':
     import msvcrt
@@ -19,7 +21,7 @@ logging.basicConfig(
     level=logging.INFO,
     format='---- %(asctime)s ----%(message)s',
     handlers=[
-        logging.FileHandler('chapter_1/prob6/mars.log', encoding='utf-8'),
+        logging.FileHandler('chapter_1/prob7/mars.log', encoding='utf-8'),
         logging.StreamHandler()
     ]
 )
@@ -67,7 +69,7 @@ class MissionComputer:
 
     def get_sensor_average_data(self):
         for key in self.avg_env_values.keys():
-            self.avg_env_values[key] /= 60
+            self.avg_env_values[key] = round(self.avg_env_values[key] / 60, 1)
 
         return json.dumps(self.get_avg_env(), indent=4)
 
@@ -95,13 +97,14 @@ class MissionComputer:
 
 def main_sensor_loop():
     RunComputer = MissionComputer()
+    ds = prob6.mars_mission_computer.DummySensor()
 
     while not flag:
         print("------- Sensor Data -------")
         print(RunComputer.get_sensor_data())
         if RunComputer.avg_count == 60:
             print("------- Average Sensor Data (5 minutes) -------")
-            # print(RunComputer.get_sensor_average_data())
+            print(RunComputer.get_sensor_average_data())
             RunComputer.init_avg_env()
 
         # 0.05초씩 100번 총 5초 쉬는 함수. 키 입력을 받았을때 즉각적으로 프로그램을 종료하기 위해 단위를 좀 줄였음.
@@ -115,11 +118,11 @@ def keystroke_listener():
     global flag
 
     if os.name == 'nt':
-        print("[Windows] 종료하려면 아무 키나 누르세요.")
+        print('[Windows] 종료하려면 아무 키나 누르세요.')
         while not flag:
             if msvcrt.kbhit():
                 key = msvcrt.getch().decode() # 바이트를 문자열로 디코딩
-                print(f"'{key}' 키 감지됨. 시스템 종료 중...")
+                print(f'"{key}" 키 감지됨. 시스템 종료 중...')
                 flag = True
                 break
             time.sleep(0.01) # CPU 과부하 방지
@@ -129,11 +132,11 @@ def keystroke_listener():
         old_settings = termios.tcgetattr(sys.stdin)
         try:
             tty.setcbreak(sys.stdin.fileno()) # 터미널 raw 모드 설정
-            print("[Linux/macOS] 종료하려면 아무 키나 누르세요.")
+            print('[Linux/macOS] 종료하려면 아무 키나 누르세요.')
             while not flag:
                 if sys.stdin.readable():
                     key = sys.stdin.read(1) # 한 글자 읽기
-                    print(f"keystroke detected... System stopped...")
+                    print(f'keystroke detected... System stopped...')
                     flag = True
                     break
                 sleep(0.01) # CPU 과부하 방지
@@ -141,6 +144,7 @@ def keystroke_listener():
         finally:
             # 터미널 설정 복원 (매우 중요!)
             termios.tcsetattr(sys.stdin, termios.TCSADRAIN, old_settings)
+
     else:
         # 지원하지 않는 OS인 경우
         print("경고: 현재 운영체제에서는 엔터 없는 키 입력을 지원하지 않습니다.")
