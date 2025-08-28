@@ -28,7 +28,7 @@ QLineEdit#display {
     padding: 0 10px;
 }
 
-QLabel#radLabel {
+QLabel#Deg_Rad_Label {
     color: #999;
     font-size: 20px;
     font-weight: bold;
@@ -115,7 +115,7 @@ QPushButton#zeroButton {
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="radLabel">
+    <widget class="QLabel" name="Deg_Rad_Label">
      <property name="maximumSize">
       <size>
        <width>16777215</width>
@@ -123,7 +123,7 @@ QPushButton#zeroButton {
       </size>
      </property>
      <property name="text">
-      <string>Rad</string>
+      <string>Deg</string>
      </property>
     </widget>
    </item>

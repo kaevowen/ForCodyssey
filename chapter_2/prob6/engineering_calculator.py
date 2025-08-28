@@ -1,5 +1,5 @@
 # engineering_calculator.py
-
+import math
 import sys
 from PyQt5.QtWidgets import QApplication, QWidget
 from PyQt5 import uic
@@ -76,8 +76,28 @@ class MainApp(QWidget, form_class):
 
         # TODO: 아직 구현되지 않은 기능들
         self.btn_plusminus.clicked.connect(self.toggle_sign)
-        # self.btn_percent.clicked.connect(self.apply_percent)
-        # ...
+        self.btn_percent.clicked.connect(self.handle_percent)
+        self.btn_deg.clicked.connect(self.handle_angle_mode_toggle)
+        self.btn_pi.clicked.connect(lambda: self.append_to_display(f'{math.pi}'))
+        self.btn_e.clicked.connect(lambda: self.append_to_display(f'{math.e}'))
+        self.btn_ee.clicked.connect(lambda: self.append_to_display('E'))
+        self.btn_e_pow_x.clicked.connect(lambda: self.append_to_display('exp('))
+        self.btn_10_pow_x.clicked.connect(lambda: self.append_to_display('tenpow('))
+        self.btn_reciprocal.clicked.connect(lambda: self.append_to_display('recip('))
+        self.btn_yroot.clicked.connect(lambda: self.append_to_display('yroot'))
+        self.btn_factorial.clicked.connect(lambda: self.append_to_display('!'))
+        self.btn_sqrt.clicked.connect(lambda: self.append_to_display('sqrt('))
+        self.btn_cbrt.clicked.connect(lambda: self.append_to_display('cbrt('))
+
+    def handle_percent(self):
+        """'%' 버튼을 눌렀을 때, 로직 클래스를 호출하여 백분율 계산을 처리합니다."""
+        current_text = self.display.text()
+
+        # 로직 객체에 현재 수식을 전달하고, 처리된 결과를 받습니다.
+        new_text = self.logic.apply_percentage(current_text)
+
+        # 처리된 결과로 디스플레이를 업데이트합니다.
+        self.display.setText(new_text)
 
     def append_to_display(self, text: str):
         """디스플레이 창에 텍스트를 추가합니다."""
@@ -98,6 +118,16 @@ class MainApp(QWidget, form_class):
 
         # 처리된 결과로 디스플레이를 업데이트합니다.
         self.display.setText(new_text)
+
+    def handle_angle_mode_toggle(self):
+        """'Deg' 버튼을 눌렀을 때, 각도 모드를 전환하고 UI를 업데이트합니다."""
+        # 로직의 모드 전환 함수를 호출하고, 새로운 모드 이름을 받음
+        new_mode = self.logic.toggle_angle_mode()
+
+        # 화면 상단 라벨의 텍스트를 현재 모드로 변경
+        self.btn_deg.setText(new_mode)
+        self.Deg_Rad_Label.setText(new_mode)
+        print(f"Angle mode changed to: {new_mode}")
 
     def calculate_result(self):
         """'=' 버튼을 눌렀을 때, 디스플레이의 수식을 계산하고 결과를 표시합니다."""
